@@ -1,35 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
 <style>
     .movie-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     .movie-title {
-        margin-right: 1rem;
+      margin-right: 1rem;
     }
     .avg-rating-container {
-        white-space: nowrap;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
     }
-</style>
-
-<body>
+    .avg-rating-container p:first-child {
+      margin-right: 1.5rem;
+    }
+  </style>
+  <body>
     <h1>Movies</h1>
     {% for movie in movies %}
-    <a href="{% url 'movie' movie.id %}" class="movie-container">
-        <h2 class="movie-title">{{ movie.title }}</h2>
-        <div class="avg-rating-container">
-            <p>Average Rating:{{ movie.avg_rating }}</p>
-        </div>
-    </a>
+    <div class="movie-container">
+      <a href="{% url 'movie' movie.id %}" class="movie-title"><h2>{{ movie.title }}</h2></a>
+      <div class="avg-rating-container">
+        <p>Number of Ratings: {{ movie.get_rating_count }}</p>
+        <a href="{% url 'movie' movie.id %}">
+          <p>Average Rating:{{ movie.avg_rating }}</p>
+        </a>
+      </div>
+    </div>
     {% endfor %}
-</body>
-
-</html>
+  </body>
+  

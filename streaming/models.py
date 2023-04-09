@@ -24,6 +24,9 @@ class Movie(models.Model):
     subscription_plans = models.ManyToManyField(SubscriptionPlan, related_name='movies')
     def __str__(self) -> str:
         return self.title
+    
+    def get_rating_count(self):
+        return self.reviews.count()
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
