@@ -6,7 +6,7 @@ from django.db.models import Avg
 
 # Create your views here.
 def index(request):
-    movies_with_avg_rating = Movie.objects.annotate(avg_rating=Avg('reviews__rating'))
+    movies_with_avg_rating = Movie.objects.annotate(avg_rating=Avg('reviews__rating')).order_by('-avg_rating')
     return render(request, 'streaming/index.html', {'movies': movies_with_avg_rating})
 
 def movie(request, movie_id):
