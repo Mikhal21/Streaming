@@ -1,7 +1,7 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render
 from django.http import Http404
-from streaming.models import Movie
+from streaming.models import Movie, UserProfile
 from django.db.models import Avg
 
 # Create your views here.
@@ -16,3 +16,10 @@ def movie(request, movie_id):
         return render(request, 'streaming/movie.html', {'movie': movie})
     except ObjectDoesNotExist:
         raise Http404('Movie not found')
+
+def user(request, user_id):
+    try:
+        user = UserProfile.objects.get(pk=user_id)
+        return render(request, 'streaming/user.html', {'user': user})
+    except ObjectDoesNotExist:
+        raise Http404('User not found')
