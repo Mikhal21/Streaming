@@ -2,11 +2,12 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render
 from django.http import Http404
 from streaming.models import Movie
+from django.db.models import Avg
 
 # Create your views here.
 def index(request):
-    movies = Movie.objects.all()
-    return render(request, 'streaming/index.html', {'movies': movies})
+    movies_with_avg_rating = Movie.objects.annotate(avg_rating=Avg('reviews__rating'))
+    return render(request, 'streaming/index.html', {'movies': movies_with_avg_rating})
 
 def movie(request, movie_id):
     try:

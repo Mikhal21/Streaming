@@ -6,10 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    .movie-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .movie-title {
+        margin-right: 1rem;
+    }
+    .avg-rating-container {
+        white-space: nowrap;
+    }
+</style>
+
 <body>
     <h1>Movies</h1>
     {% for movie in movies %}
-    <a href="{% url 'movie' movie.id %}"><h2>{{ movie.title }}</h2></a>
+    <a href="{% url 'movie' movie.id %}" class="movie-container">
+        <h2 class="movie-title">{{ movie.title }}</h2>
+        <div class="avg-rating-container">
+            <p>Average Rating:{{ movie.avg_rating }}</p>
+        </div>
+    </a>
     {% endfor %}
 </body>
+
 </html>
