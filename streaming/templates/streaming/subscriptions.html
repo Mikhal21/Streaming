@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Subscription Plan Movies</title>
+</head>
+<body>
+    <h1>{{ subscription.name }}</h1>
+    <ul>
+        {% for movie in movies %}
+            <li>{{ movie.title }}</li>
+        {% empty %}
+            <li>No movies available for this subscription plan.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
